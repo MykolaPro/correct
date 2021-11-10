@@ -1,11 +1,13 @@
 const form = document.querySelector('#text-form');
 const textInput = document.querySelector('#text');
 const output = document.querySelector('.output');
+const lang = document.querySelector('#lang')
 
 loadEventListeners();
 
 function loadEventListeners() {
   form.addEventListener('submit', getResult);
+
 }
 
 function getResult(e) {
@@ -15,7 +17,7 @@ function getResult(e) {
   
   const h2 = document.createElement('h2');
 
-  h2.appendChild(document.createTextNode(`${new Date(getDeadLineTime())}, ${getPrice(textInput.value)}`));
+  h2.appendChild(document.createTextNode(`Дата та час виконання: ${new Date(getDeadLineTime())}, Ціна послуги: ${getPrice(textInput.value)} грн`));
 
   output.appendChild(h2);
 
@@ -31,13 +33,13 @@ function getDeadLineTime() {
   return calcWorkDays(deadLineTime);
 }
 
-function getWorkTime(text, lang = 'en') {
+function getWorkTime(text) {
 
   const allSings = text.replace(/\s/gm, '');
 
   let minTime = 60;
 
-  let signPerTime = lang == 'en'
+  let signPerTime = lang.value == 'en'
     ? allSings.length * (60 / 333) + 30
     : allSings.length * (60 / 1333) + 30;
   
@@ -77,14 +79,13 @@ function calcWorkDays(workTime) {
 
 // Price calculation
 
-function getPrice(text, lang = 'en') {
+function getPrice(text) {
 
   const allSings = text.replace(/\s/gm);
 
-  let minPrice = (lang == 'en') ? 120 : 50;
+  let minPrice = (lang.value == 'en') ? 120 : 50;
 
-  let signPrice = (lang == 'en') ? Number((allSings.length * 0.12).toFixed(10)) : Number((allSings.length * 0.05.toFixed(10)));
+  let signPrice = (lang.value == 'en') ? Number((allSings.length * 0.12).toFixed(10)) : Number((allSings.length * 0.05.toFixed(10)));
   
   return signPrice < minPrice ? minPrice : signPrice;
 }
-

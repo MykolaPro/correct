@@ -16,9 +16,18 @@
     <div class="input">
       <form id="text-form">
         <div class="input-text">
-          <textarea name="text" id="text" placeholder="Введіть текст"></textarea>
+          <textarea name="text" id="text" placeholder="Введіть текст" style="width:520px; height:300px;"></textarea>
         </div>
-        <input type="submit" class="btn" value="Замовити">
+        <div>
+          <div class="select-lang">
+            <select id="lang">
+              <option value="en">Англійська</option>
+              <option value="ru">Російська</option>
+              <option value="ua">Українська</option>
+            </select>
+          </div>
+        </div>
+        <input type="submit" class="btn" value="Замовити" style="margin-top: 10px;">
       </form>
     </div>
     <div class="output"></div>
